@@ -1,0 +1,61 @@
+@startuml
+''' Entity '''
+
+entity "users" {
+    + id [PK]
+    ==
+    - name: string
+    - created_at: datetime
+    - updated_at: datetime
+}
+entity "hosts" {
+    + id [PK]
+    ==
+    - name: string
+    # user_id [FK]
+    - created_at: datetime
+    - updated_at: datetime
+}
+entity "spaces" {
+    + id [PK]
+    ==
+    - name: string
+    # host_id [FK]
+    - created_at: datetime
+    - updated_at: datetime
+}
+entity "messages" {
+    + id [PK]
+    ==
+    - name: string
+    # user_id [FK]
+    - created_at: datetime
+    - updated_at: datetime
+}
+entity "contracts" {
+    + id [PK]
+    ==
+    - name: string
+    - created_at: datetime
+    - updated_at: datetime
+}
+entity "revenues" {
+    + id [PK]
+    ==
+    - name: string
+    # user_id [FK]
+    - created_at: datetime
+    - updated_at: datetime
+}
+
+''' Cardinality '''
+users ||--|| hosts
+users --o{ messages
+spaces --o{ messages
+users --o{ contracts
+revenues --o{ contracts
+hosts --o{ spaces
+hosts --o{ revenues
+hosts --o{ contracts
+hosts --o{ messages
+@enduml
