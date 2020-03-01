@@ -1,0 +1,92 @@
+@startuml
+''' Entity '''
+entity "users" {
+    + id [PK]
+    ==
+    - name: string
+    - created_at: datetime
+    - updated_at: datetime
+}
+entity "hosts" {
+    + id [PK]
+    ==
+    - name: string
+    # user_id [FK]
+    - created_at: datetime
+    - updated_at: datetime
+}
+entity "month_amount" {
+    + id [PK]
+    ==
+    - name: string
+    # host_id [FK]
+    - created_at: datetime
+    - updated_at: datetime
+}
+entity "spaces" {
+    + id [PK]
+    ==
+    - name: string
+    # host_id [FK]
+    - created_at: datetime
+    - updated_at: datetime
+}
+entity "messages" {
+    + id [PK]
+    ==
+    - name: string
+    # user_id [FK]
+    - created_at: datetime
+    - updated_at: datetime
+}
+entity "reservation" {
+    + id [PK]
+    ==
+    - name: string
+    - created_at: datetime
+    - updated_at: datetime
+}
+entity "contracts" {
+    + id [PK]
+    ==
+    - name: string
+    - created_at: datetime
+    - updated_at: datetime
+}
+entity "settlement_contracts" {
+    + id [PK]
+    ==
+    - name: string
+    - created_at: datetime
+    - updated_at: datetime
+}
+entity "settlement_posting_fees" {
+    + id [PK]
+    ==
+    - name: string
+    - created_at: datetime
+    - updated_at: datetime
+}
+entity "revenues" {
+    + id [PK]
+    ==
+    - name: string
+    # user_id [FK]
+    - created_at: datetime
+    - updated_at: datetime
+}
+
+''' Cardinality '''
+users ||--|| hosts
+users --o{ messages
+spaces --o{ messages
+users --o{ contracts
+revenues --o{ contracts
+hosts --o{ spaces
+hosts --o{ month_amount
+hosts --o{ contracts
+hosts --o{ messages
+month_amount --o{ revenues
+spaces ||--|| settlement_posting_fees
+contracts ||--|| settlement_contracts
+@enduml
